@@ -10,7 +10,7 @@ import (
 
 func main() {
 	var err error
-	var declMap = MakeDeclMap()
+	var declMap *DeclCtrl
 	cfg := &packages.Config{Mode: packages.LoadSyntax}
 	pkgs, err := packages.Load(cfg, ".")
 	if err != nil {
@@ -21,7 +21,11 @@ func main() {
 	}
 	for _, pkg := range pkgs {
 		for _, file := range pkg.Syntax {
-			declMap.resolveComments(ast.NewCommentMap(pkg.Fset, file, file.Comments), pkg.Types)
+			declMap = NewDeclCtrl()
+			err = declMap.resolveComments(ast.NewCommentMap(pkg.Fset, file, file.Comments), pkg)
+			if err != nil {
+				Log.Fatal(err.Error())
+			}
 		}
 	}
 }

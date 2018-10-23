@@ -1,3 +1,3 @@
 package test
 
-//go:generate go run ../main.go
+//go:generate ../impler

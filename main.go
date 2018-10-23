@@ -1,20 +1,16 @@
 package main
 
 import (
-	"fmt"
 	. "github.com/rady-io/impler/log"
 	"go/ast"
 	"golang.org/x/tools/go/packages"
 )
 
-//go:generate go run main.go
-
-var (
-	commentMaps = make([]ast.CommentMap, 0)
-)
+//go:generate ./impler
 
 func main() {
 	var err error
+	var declMap = MakeDeclMap()
 	cfg := &packages.Config{Mode: packages.LoadSyntax}
 	pkgs, err := packages.Load(cfg, ".")
 	if err != nil {
@@ -25,8 +21,7 @@ func main() {
 	}
 	for _, pkg := range pkgs {
 		for _, file := range pkg.Syntax {
-			commentMaps = append(commentMaps, ast.NewCommentMap(pkg.Fset, file, file.Comments))
+			declMap.resolveComments(ast.NewCommentMap(pkg.Fset, file, file.Comments), pkg.Types)
 		}
-		fmt.Println(commentMaps)
 	}
 }

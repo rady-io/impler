@@ -94,29 +94,6 @@ type (
 	}
 )
 
-type (
-	// TypeSepc
-	Struct struct {
-		*Type
-	}
-
-	Interface struct {
-		*Type
-	}
-
-	Map struct {
-		*Type
-	}
-
-	Slice struct {
-		*Type
-	}
-
-	Other struct {
-		*Type
-	}
-)
-
 func NewDeclCtrl() *DeclCtrl {
 	return &DeclCtrl{
 		declMap:  MakeDeclMap(),

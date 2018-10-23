@@ -1,6 +1,13 @@
 package main
 
-import "go/ast"
+import (
+	"go/ast"
+	"strings"
+)
+
+const (
+	LF = "\n"
+)
 
 type (
 	Package struct {
@@ -61,3 +68,10 @@ type (
 		*Type
 	}
 )
+
+func combineComments(typeSpecComments, interfaceComments string) (comments string) {
+	typeSpecComments = strings.Trim(typeSpecComments, LF)
+	interfaceComments = strings.Trim(interfaceComments, LF)
+	comments = typeSpecComments + LF + interfaceComments
+	return
+}

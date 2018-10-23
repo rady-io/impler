@@ -7,8 +7,6 @@ import (
 	"time"
 )
 
-//go:generate go run ../main.go
-
 /*
 @HttpService
  */

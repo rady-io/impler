@@ -1,0 +1,4 @@
+.idea/
+*.coverprofile
+*_impl.go
+impler

@@ -9,6 +9,7 @@ import (
 	"go/parser"
 	"go/token"
 	"go/types"
+	_ "golang.org/x/tools/go/packages"
 )
 
 var (
@@ -44,4 +45,6 @@ func main() {
 	fmt.Println(pkg.Scope().Lookup("Service"))
 	fmt.Println(pkg.Imports())
 	fmt.Println(commentMaps)
+
+	cfg :=
 }
